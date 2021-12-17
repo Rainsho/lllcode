@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "client/dist",
+    "lib": ["ESNext", "DOM"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": false,
+    "declaration": false
+  },
+  "exclude": ["server/**/*", "node_modules"]
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>扣扣社区光谷分扣</title>
+  <link rel="icon" sizes="192x192" href="./favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.7/antd.min.css" />
+  <style>
+    .upload-list-inline .ant-upload-list-item {
+      float: left;
+      width: 200px;
+      margin-right: 8px;
+    }
+
+    .upload-list-inline [class*='-upload-list-rtl'] .ant-upload-list-item {
+      float: right;
+    }
+
+    #root {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module">
+    import React from 'https://cdn.skypack.dev/react';
+    import ReactDOM from 'https://cdn.skypack.dev/react-dom';
+
+    window.React = React;
+    window.ReactDOM = ReactDOM;
+
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.7/antd.min.js';
+    document.body.append(script);
+
+    window.addEventListener('load', () => {
+      import('./dist/main.js');
+    });
+  </script>
+</body>
+
+</html>
