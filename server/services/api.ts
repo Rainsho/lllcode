@@ -1,8 +1,8 @@
-import CONFIG from '../config.js';
 import Boom from '@hapi/boom';
+import moment from 'moment';
+import CONFIG from '../config.js';
 import { db } from '../utils/db.js';
 import { getDailyQuestion, getUserSubmissions } from './bridge.js';
-import moment from 'moment';
 import { calculateCheckout } from './checkout.js';
 
 function checkToken(req) {
@@ -62,11 +62,13 @@ export async function checkUser(req) {
 }
 
 export async function getUserCheckout() {
-  const checkout = Object.entries(db.data.checkout);
+  const questions = Object.entries(db.data.questions);
 
-  return checkout.map(([date, names]) => ({
-    date,
-    question: db.data.questions[date],
-    users: names.map(name => db.data.users[name]),
-  }));
+  return questions
+    .map(([date, question]) => ({
+      date,
+      question,
+      users: (db.data.checkout[date] || []).map(name => db.data.users[name]),
+    }))
+    .sort((a, b) => (a.date > b.date ? -1 : 1));
 }

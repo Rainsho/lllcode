@@ -1,6 +1,6 @@
 import React from 'https://cdn.skypack.dev/react';
 import { ColumnsType } from 'antd/es/table';
-import { Card, Table } from '../antd.js';
+import { Button, Card, Table } from '../antd.js';
 import { request } from '../utils.js';
 import UserTags from './UserTags.js';
 
@@ -43,7 +43,7 @@ const CheckoutList: React.FC = () => {
         dataIndex: 'users',
         render: (_, record) => {
           if (record.question.difficulty === 'Hard') {
-            return '暂不统计困难打卡';
+            return '困难睡大觉~';
           }
 
           return <UserTags users={record.users} />;
@@ -54,7 +54,14 @@ const CheckoutList: React.FC = () => {
   );
 
   return (
-    <Card title="打卡记录">
+    <Card
+      title="打卡记录"
+      extra={
+        <Button type="primary" onClick={update}>
+          刷新
+        </Button>
+      }
+    >
       <Table<ListDTO> rowKey="date" columns={columns} dataSource={list} pagination={false} />
     </Card>
   );

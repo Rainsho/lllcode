@@ -16,6 +16,8 @@ const COLORS = [
 ];
 
 const UserTags: React.FC<{ users: User[] }> = ({ users }) => {
+  if (users.length === 0) return <span>这里似乎还没有人~</span>;
+
   return (
     <>
       {users.map((user, i) => (
