@@ -1,0 +1,111 @@
+{
+  "users": {
+    "rainsho": {
+      "displayName": "Rainsho",
+      "leetcodeName": "rainsho"
+    }
+  },
+  "questions": {
+    "2021-12-17": {
+      "date": "2021-12-17",
+      "questionId": "1518",
+      "difficulty": "Easy",
+      "title": "Water Bottles",
+      "titleCn": "换酒问题",
+      "titleSlug": "water-bottles"
+    },
+    "2021-12-16": {
+      "date": "2021-12-16",
+      "questionId": "1610",
+      "difficulty": "Hard",
+      "title": "Maximum Number of Visible Points",
+      "titleCn": "可见点的最大数目",
+      "titleSlug": "maximum-number-of-visible-points"
+    },
+    "2021-12-15": {
+      "date": "2021-12-15",
+      "questionId": "851",
+      "difficulty": "Medium",
+      "title": "Loud and Rich",
+      "titleCn": "喧闹和富有",
+      "titleSlug": "loud-and-rich"
+    },
+    "2021-12-14": {
+      "date": "2021-12-14",
+      "questionId": "630",
+      "difficulty": "Hard",
+      "title": "Course Schedule III",
+      "titleCn": "课程表 III",
+      "titleSlug": "course-schedule-iii"
+    },
+    "2021-12-13": {
+      "date": "2021-12-13",
+      "questionId": "807",
+      "difficulty": "Medium",
+      "title": "Max Increase to Keep City Skyline",
+      "titleCn": "保持城市天际线",
+      "titleSlug": "max-increase-to-keep-city-skyline"
+    },
+    "2021-12-12": {
+      "date": "2021-12-12",
+      "questionId": "709",
+      "difficulty": "Easy",
+      "title": "To Lower Case",
+      "titleCn": "转换成小写字母",
+      "titleSlug": "to-lower-case"
+    },
+    "2021-12-11": {
+      "date": "2021-12-11",
+      "questionId": "911",
+      "difficulty": "Medium",
+      "title": "Online Election",
+      "titleCn": "在线选举",
+      "titleSlug": "online-election"
+    },
+    "2021-12-10": {
+      "date": "2021-12-10",
+      "questionId": "748",
+      "difficulty": "Easy",
+      "title": "Shortest Completing Word",
+      "titleCn": "最短补全词",
+      "titleSlug": "shortest-completing-word"
+    },
+    "2021-12-09": {
+      "date": "2021-12-09",
+      "questionId": "794",
+      "difficulty": "Medium",
+      "title": "Valid Tic-Tac-Toe State",
+      "titleCn": "有效的井字游戏",
+      "titleSlug": "valid-tic-tac-toe-state"
+    },
+    "2021-12-08": {
+      "date": "2021-12-08",
+      "questionId": "689",
+      "difficulty": "Hard",
+      "title": "Maximum Sum of 3 Non-Overlapping Subarrays",
+      "titleCn": "三个无重叠子数组的最大和",
+      "titleSlug": "maximum-sum-of-3-non-overlapping-subarrays"
+    },
+    "2021-12-07": {
+      "date": "2021-12-07",
+      "questionId": "1034",
+      "difficulty": "Medium",
+      "title": "Coloring A Border",
+      "titleCn": "边界着色",
+      "titleSlug": "coloring-a-border"
+    }
+  },
+  "checkout": {
+    "2021-12-17": ["rainsho"],
+    "2021-12-16": ["rainsho"],
+    "2021-12-15": ["rainsho"],
+    "2021-12-14": ["rainsho"],
+    "2021-12-13": ["rainsho"],
+    "2021-12-12": ["rainsho"],
+    "2021-12-11": ["rainsho"],
+    "2021-12-10": ["rainsho"],
+    "2021-12-09": ["rainsho"],
+    "2021-12-08": [],
+    "2021-12-07": ["rainsho"]
+  }
+}
