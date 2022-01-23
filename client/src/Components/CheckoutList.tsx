@@ -12,9 +12,14 @@ type ListDTO = {
 
 const CheckoutList: React.FC = () => {
   const [list, setList] = React.useState<ListDTO[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const update = React.useCallback(() => {
-    request.get('./checkout').then(setList);
+    setLoading(true);
+    request
+      .get('./checkout')
+      .then(setList)
+      .finally(() => setLoading(false));
   }, []);
 
   React.useEffect(() => {
@@ -41,13 +46,7 @@ const CheckoutList: React.FC = () => {
       {
         title: '已打卡用户',
         dataIndex: 'users',
-        render: (_, record) => {
-          if (record.question.difficulty === 'Hard') {
-            return '困难睡大觉~';
-          }
-
-          return <UserTags users={record.users} />;
-        },
+        render: (_, record) => <UserTags users={record.users} />,
       },
     ],
     []
@@ -62,7 +61,13 @@ const CheckoutList: React.FC = () => {
         </Button>
       }
     >
-      <Table<ListDTO> rowKey="date" columns={columns} dataSource={list} pagination={false} />
+      <Table<ListDTO>
+        rowKey="date"
+        columns={columns}
+        dataSource={list}
+        pagination={false}
+        loading={loading}
+      />
     </Card>
   );
 };

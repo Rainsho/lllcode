@@ -5,10 +5,15 @@ import { request } from '../utils.js';
 
 const UserList: React.FC = () => {
   const [users, setUsers] = React.useState<User[]>();
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [form] = Form.useForm();
 
   const update = React.useCallback(() => {
-    request.get('./users').then(setUsers);
+    setLoading(true);
+    request
+      .get('./users')
+      .then(setUsers)
+      .finally(() => setLoading(false));
   }, []);
 
   const upsertUser = React.useCallback(
@@ -55,7 +60,13 @@ const UserList: React.FC = () => {
         </Space>
       }
     >
-      <Table<User> rowKey="leetcodeName" columns={columns} dataSource={users} pagination={false} />
+      <Table<User>
+        rowKey="leetcodeName"
+        columns={columns}
+        dataSource={users}
+        pagination={false}
+        loading={loading}
+      />
     </Card>
   );
 };

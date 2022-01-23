@@ -40,7 +40,8 @@
     document.body.append(script);
 
     window.addEventListener('load', () => {
-      import('./dist/main.js');
+      const debug = new URL(location.href).searchParams.get('debug');
+      debug ? import(debug) : import('./dist/main.js');
     });
   </script>
 </body>
