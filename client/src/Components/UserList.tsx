@@ -2,6 +2,7 @@ import React from 'https://cdn.skypack.dev/react';
 import { ColumnsType } from 'antd/es/table';
 import { Button, Card, Form, Input, Space, Table } from '../antd.js';
 import { request } from '../utils.js';
+import ColorEditor from './ColorEditor.js';
 
 const UserList: React.FC = () => {
   const [users, setUsers] = React.useState<User[]>();
@@ -34,6 +35,7 @@ const UserList: React.FC = () => {
     () => [
       { title: '用户', dataIndex: 'displayName' },
       { title: 'LeetCode 用户名', dataIndex: 'leetcodeName' },
+      { title: '颜色', dataIndex: 'color', render: (_, user) => <ColorEditor user={user} /> },
     ],
     []
   );

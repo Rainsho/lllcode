@@ -7,6 +7,7 @@ import {
   getSubmissions,
   getToday,
   getUserCheckout,
+  updateUser,
   upsertUser,
 } from './services/api.js';
 import { db } from './utils/db.js';
@@ -36,6 +37,7 @@ const init = async () => {
   // for common
   server.route({ method: 'GET', path: '/users', handler: () => Object.values(db.data.users) });
   server.route({ method: 'GET', path: '/checkout', handler: getUserCheckout });
+  server.route({ method: 'PUT', path: '/users', handler: updateUser }); // this do not check `token`
 
   // for admin
   server.route({ method: 'POST', path: '/users', handler: upsertUser });

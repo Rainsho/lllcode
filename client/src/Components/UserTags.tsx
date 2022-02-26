@@ -21,7 +21,7 @@ const UserTags: React.FC<{ users: User[] }> = ({ users }) => {
   return (
     <>
       {users.map((user, i) => (
-        <Tag key={user.leetcodeName} color={COLORS[i % COLORS.length]}>
+        <Tag key={user.leetcodeName} color={user.color || COLORS[i % COLORS.length]}>
           {user.displayName}
         </Tag>
       ))}

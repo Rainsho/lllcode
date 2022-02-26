@@ -31,6 +31,25 @@ export async function upsertUser(req) {
   return user;
 }
 
+export async function updateUser(req) {
+  const { leetcodeName, color } = req.payload;
+
+  if (!leetcodeName || !db.data.users[leetcodeName]) {
+    throw Boom.badData('User is not exist.');
+  }
+
+  const user = db.data.users[leetcodeName];
+
+  if (color) {
+    user.color = color;
+  }
+
+  db.data.users[leetcodeName] = user;
+  await db.write();
+
+  return user;
+}
+
 export async function getToday() {
   const question = await getDailyQuestion();
 

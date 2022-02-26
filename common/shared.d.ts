@@ -1,6 +1,7 @@
 declare type User = {
   leetcodeName: string; // as id
   displayName: string;
+  color?: string;
 };
 
 declare type DailyQuestion = {
