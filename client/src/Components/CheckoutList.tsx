@@ -3,16 +3,21 @@ import { ColumnsType } from 'antd/es/table';
 import { Button, Card, Table } from '../antd.js';
 import { request } from '../utils.js';
 import UserTags from './UserTags.js';
+import { AppCtx } from './AppContext.js';
 
-type ListDTO = {
+export type ListDTO = {
   date: string;
   question: DailyQuestion;
-  users: User[];
+  users: string[];
 };
 
 const CheckoutList: React.FC = () => {
-  const [list, setList] = React.useState<ListDTO[]>([]);
+  const { list, setList, users } = React.useContext(AppCtx);
   const [loading, setLoading] = React.useState<boolean>(false);
+
+  const userRecord = React.useMemo<Record<string, User>>(() => {
+    return users.reduce((acc, cur) => Object.assign(acc, { [cur.leetcodeName]: cur }), {});
+  }, [users]);
 
   const update = React.useCallback(() => {
     setLoading(true);
@@ -46,10 +51,10 @@ const CheckoutList: React.FC = () => {
       {
         title: '已打卡用户',
         dataIndex: 'users',
-        render: (_, record) => <UserTags users={record.users} />,
+        render: (_, record) => <UserTags users={record.users.map(u => userRecord[u])} />,
       },
     ],
-    []
+    [userRecord]
   );
 
   return (

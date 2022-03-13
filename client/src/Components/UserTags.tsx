@@ -20,11 +20,14 @@ const UserTags: React.FC<{ users: User[] }> = ({ users }) => {
 
   return (
     <>
-      {users.map((user, i) => (
-        <Tag key={user.leetcodeName} color={user.color || COLORS[i % COLORS.length]}>
-          {user.displayName}
-        </Tag>
-      ))}
+      {users.map(
+        (user, i) =>
+          user && (
+            <Tag key={user.leetcodeName} color={user.color || COLORS[i % COLORS.length]}>
+              {user.displayName}
+            </Tag>
+          )
+      )}
     </>
   );
 };

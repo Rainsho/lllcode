@@ -87,7 +87,7 @@ export async function getUserCheckout() {
     .map(([date, question]) => ({
       date,
       question,
-      users: (db.data.checkout[date] || []).map(name => db.data.users[name]),
+      users: db.data.checkout[date] || [],
     }))
     .sort((a, b) => (a.date > b.date ? -1 : 1));
 }

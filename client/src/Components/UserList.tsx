@@ -1,11 +1,12 @@
 import React from 'https://cdn.skypack.dev/react';
 import { ColumnsType } from 'antd/es/table';
-import { Button, Card, Form, Input, Space, Table } from '../antd.js';
+import { Button, Card, Form, Icon, Input, Space, Table } from '../antd.js';
 import { request } from '../utils.js';
 import ColorEditor from './ColorEditor.js';
+import { AppCtx } from './AppContext.js';
 
 const UserList: React.FC = () => {
-  const [users, setUsers] = React.useState<User[]>();
+  const { users, setUsers, list } = React.useContext(AppCtx);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [form] = Form.useForm();
 
@@ -36,8 +37,22 @@ const UserList: React.FC = () => {
       { title: '用户', dataIndex: 'displayName' },
       { title: 'LeetCode 用户名', dataIndex: 'leetcodeName' },
       { title: '颜色', dataIndex: 'color', render: (_, user) => <ColorEditor user={user} /> },
+      {
+        title: '最近一周',
+        key: 'last',
+        render: (_, user) => {
+          return (
+            <>
+              {list
+                .slice(0, 7)
+                .map(x => x.users.includes(user.leetcodeName))
+                .map(b => (b ? <Icon.Check /> : <Icon.Close />))}
+            </>
+          );
+        },
+      },
     ],
-    []
+    [list]
   );
 
   return (
