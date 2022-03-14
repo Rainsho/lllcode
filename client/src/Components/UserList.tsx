@@ -58,7 +58,6 @@ const UserList: React.FC = () => {
   return (
     <Card
       title="用户列表"
-      style={{ marginTop: 32 }}
       extra={
         <Space>
           <Form layout="inline" form={form} onFinish={upsertUser}>
