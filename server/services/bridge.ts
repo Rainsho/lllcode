@@ -1,6 +1,6 @@
 import superagent from 'superagent';
 
-const URL = 'https://leetcode-cn.com/graphql/';
+const URL = 'https://leetcode.com/graphql/';
 
 async function fetch(query: string, variables: any = {}, ext: any = {}) {
   return superagent

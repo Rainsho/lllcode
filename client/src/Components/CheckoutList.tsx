@@ -39,7 +39,7 @@ const CheckoutList: React.FC = () => {
         dataIndex: ['question', 'titleCn'],
         render: (title, record) => (
           <a
-            href={`https://leetcode-cn.com/problems/${record.question.titleSlug}/`}
+            href={`https://leetcode.com/problems/${record.question.titleSlug}/`}
             target="_blank"
             rel="noopener"
           >
