@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 import laabr from 'laabr';
@@ -42,6 +43,12 @@ const init = async () => {
   // for admin
   server.route({ method: 'POST', path: '/users', handler: upsertUser });
   server.route({ method: 'POST', path: '/check', handler: checkUser });
+
+  server.route({
+    method: 'GET',
+    path: '/sw.js',
+    handler: { file: { path: resolve(CONFIG.CLIENT_FOLDER, 'dist/sw.js') } },
+  });
 
   server.route({
     method: 'GET',
