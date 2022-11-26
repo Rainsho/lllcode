@@ -44,7 +44,8 @@ async function checkFresh(request: Request) {
 self.addEventListener('fetch', (event: FetchEvent) => {
   const { request } = event;
 
-  if (request.method !== 'GET') {
+  // ignore chrome-extension scheme
+  if (request.method !== 'GET' || !request.url.startsWith('http')) {
     event.respondWith(fetch(request));
     return;
   }
