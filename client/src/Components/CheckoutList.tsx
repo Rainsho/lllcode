@@ -29,6 +29,13 @@ const CheckoutList: React.FC = () => {
 
   React.useEffect(() => {
     update();
+
+    // let the sw fly a moment
+    const timer = setTimeout(update, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [update]);
 
   const columns = React.useMemo<ColumnsType<ListDTO>>(
