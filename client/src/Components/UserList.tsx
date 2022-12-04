@@ -31,8 +31,8 @@ const UserList: React.FC = () => {
   React.useEffect(() => {
     update();
 
-    // let the sw fly
-    let timer = setTimeout(update, 2000);
+    // let the sw fly a moment
+    const timer = setTimeout(update, 2000);
 
     return () => {
       clearTimeout(timer);
