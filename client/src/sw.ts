@@ -1,6 +1,6 @@
 importScripts('https://cdnjs.cloudflare.com/ajax/libs/idb-keyval/6.2.0/umd.min.js');
 
-const VERSION = 'v1';
+const VERSION = 'v1.1';
 const ONE_DAY = 1000 * 60 * 60 * 24;
 const DB = self.idbKeyval.createStore(VERSION, 'cache-time');
 
@@ -23,8 +23,10 @@ async function upsertCacheTime(key: string, time?: number): Promise<number> {
 async function updateCache(request: Request): Promise<Response> {
   const cache = await caches.open(VERSION);
   const response = await fetch(request);
-  await cache.put(request, response.clone());
-  upsertCacheTime(request.url, Date.now());
+  if (response.ok) {
+    await cache.put(request, response.clone());
+    upsertCacheTime(request.url, Date.now());
+  }
   return response;
 }
 
