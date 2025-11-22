@@ -1,8 +1,8 @@
-import moment from 'moment';
 import schedule from 'node-schedule';
 import { calculateCheckout } from '../services/checkout.js';
 import { db } from '../utils/db.js';
 import { getToday } from '../services/api.js';
+import { formatDate, getYesterday } from '../utils/date.js';
 
 const log = (...args) => console.log(new Date(), ...args);
 
@@ -12,7 +12,7 @@ schedule.scheduleJob('0 2,4 * * *', async () => {
 });
 
 schedule.scheduleJob('0 3-23/2 * * *', async () => {
-  const today = moment().format('YYYY-MM-DD');
+  const today = formatDate(new Date());
   const users = Object.values(db.data.users);
 
   for (const user of users) {
@@ -22,7 +22,7 @@ schedule.scheduleJob('0 3-23/2 * * *', async () => {
 });
 
 schedule.scheduleJob('50 1-13/2 * * *', async () => {
-  const yesterday = moment().subtract(1, 'day').format('YYYY-MM-DD');
+  const yesterday = getYesterday();
   const users = Object.values(db.data.users);
 
   for (const user of users) {

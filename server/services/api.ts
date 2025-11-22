@@ -1,9 +1,9 @@
 import Boom from '@hapi/boom';
-import moment from 'moment';
 import CONFIG from '../config.js';
 import { db } from '../utils/db.js';
 import { getDailyQuestion, getUserSubmissions } from './bridge.js';
 import { calculateCheckout } from './checkout.js';
+import { formatDate } from '../utils/date.js';
 
 function checkToken(req) {
   const { token } = req.state;
@@ -74,7 +74,7 @@ export async function getSubmissions(req) {
 export async function checkUser(req) {
   checkToken(req);
 
-  const { name, date = moment().format('YYYY-MM-DD') } = req.payload;
+  const { name, date = formatDate(new Date()) } = req.payload;
   const status = await calculateCheckout(name, date);
 
   return { name, date, status };

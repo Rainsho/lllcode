@@ -1,6 +1,6 @@
-import moment from 'moment';
 import { db } from '../utils/db.js';
 import { getUserSubmissions } from './bridge.js';
+import { toUnix } from '../utils/date.js';
 
 const PASS_STATUS = 'A_10';
 
@@ -17,7 +17,7 @@ export async function calculateCheckout(name: string, date: string): Promise<boo
 
   const { questionId } = db.data.questions[date];
   const submissions = await getUserSubmissions(name);
-  const start = moment(date).unix();
+  const start = toUnix(date);
   const end = start + 38 * 60 * 60; // next day 2PM
 
   const logs = submissions.filter(
