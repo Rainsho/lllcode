@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    image: lllcode:
+    build:
+      context: .
+    ports:
+      - '3333:3333'
+    environment:
+      - NODE_ENV=production
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+    volumes:
+      - ./db.json:/app/db.json
+    restart: unless-stopped
