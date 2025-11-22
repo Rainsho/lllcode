@@ -1,18 +1,31 @@
-import superagent from 'superagent';
+import { db } from '../utils/db.js';
 
-const URL = 'https://leetcode.cn/graphql/';
-const URL_v2 = 'https://leetcode.cn/graphql/noj-go/';
-
-async function fetch(url: string, query: string, variables: any = {}, ext: any = {}) {
-  return superagent
-    .post(url)
-    .send({ query, variables, ...ext })
-    .then(res => res.body.data);
+async function request(query: string, variables: any = {}, ext: any = {}) {
+  return fetch('https://leetcode.cn/graphql/', {
+    headers: {
+      accept: '*/*',
+      'accept-language': 'zh-CN,zh;q=0.9',
+      authorization: '',
+      'content-type': 'application/json',
+      priority: 'u=1, i',
+      'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"macOS"',
+      'sec-fetch-dest': 'empty',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-site': 'same-origin',
+      Referer: 'https://leetcode.cn/problemset/',
+      cookie: db.data.cookie,
+    },
+    body: JSON.stringify({ query, variables, ...ext }),
+    method: 'POST',
+  })
+    .then(res => res.json())
+    .then(json => json.data);
 }
 
 export async function getDailyQuestion(): Promise<DailyQuestion> {
-  const raw = await fetch(
-    URL,
+  const raw = await request(
     `
     query questionOfTodayV2 {
       todayRecord {
@@ -42,8 +55,7 @@ type Submission = {
 };
 
 export async function getUserSubmissions(userSlug: string): Promise<Submission[]> {
-  const { recentSubmissions: raw = [] } = await fetch(
-    URL_v2,
+  const { recentSubmissions: raw = [] } = await request(
     `
   query recentSubmissions($userSlug: String!) {
     recentSubmissions(userSlug: $userSlug) {

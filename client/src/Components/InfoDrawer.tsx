@@ -1,5 +1,6 @@
 import React from 'https://cdn.skypack.dev/react';
-import { Button, Drawer, Input, Space } from '../antd.js';
+import { Button, Drawer, Input, Space, message } from '../antd.js';
+import { request } from '../utils.js';
 
 const { useState } = React;
 
@@ -15,6 +16,7 @@ const InfoDrawer: React.FC = () => {
 
     return tc[0] || '';
   });
+  const [cookie, setCookie] = useState(() => document.cookie);
 
   return (
     <>
@@ -32,6 +34,22 @@ const InfoDrawer: React.FC = () => {
             <Input value={token} onChange={e => setToken(e.target.value)} />
           </div>
           <Button type="primary" onClick={() => (document.cookie = `token=${token}`)}>
+            更新
+          </Button>
+        </Space>
+        <Space direction="vertical" size="middle">
+          <div>
+            <span>cookie:</span>
+            <Input value={cookie} onChange={e => setCookie(e.target.value)} />
+          </div>
+          <Button
+            type="primary"
+            onClick={() => {
+              request.post('/cookie', { cookie }).then(() => {
+                message.success('ok');
+              });
+            }}
+          >
             更新
           </Button>
         </Space>

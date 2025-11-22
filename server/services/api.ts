@@ -91,3 +91,18 @@ export async function getUserCheckout() {
     }))
     .sort((a, b) => (a.date > b.date ? -1 : 1));
 }
+
+export async function updateCookie(req) {
+  checkToken(req);
+
+  const { cookie } = req.payload;
+
+  if (!cookie) {
+    throw Boom.badData('Must provide `cookie`.');
+  }
+
+  db.data.cookie = cookie;
+  await db.write();
+
+  return { cookie };
+}

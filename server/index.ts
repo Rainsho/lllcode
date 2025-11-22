@@ -8,6 +8,7 @@ import {
   getSubmissions,
   getToday,
   getUserCheckout,
+  updateCookie,
   updateUser,
   upsertUser,
 } from './services/api.js';
@@ -43,6 +44,7 @@ const init = async () => {
   // for admin
   server.route({ method: 'POST', path: '/users', handler: upsertUser });
   server.route({ method: 'POST', path: '/check', handler: checkUser });
+  server.route({ method: 'POST', path: '/cookie', handler: updateCookie });
 
   server.route({
     method: 'GET',
