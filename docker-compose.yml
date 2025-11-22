@@ -10,4 +10,4 @@ services:
       - NODE_ENV=production
       - ADMIN_TOKEN=${ADMIN_TOKEN}
     volumes:
-      - ./db.json:/app/db.json
+      - ./data:/app/data

@@ -99,3 +99,4 @@ typings/
 /assets
 /client/dist
 /db.json
+/data

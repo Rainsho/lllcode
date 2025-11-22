@@ -9,6 +9,7 @@ RUN yarn build
 FROM node:18-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
+ENV RUN_ENV=docker
 COPY package.json yarn.lock ./
 RUN corepack enable && yarn set version classic && yarn install --frozen-lockfile --production --ignore-scripts
 COPY --from=builder /app/dist ./dist
