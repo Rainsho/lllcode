@@ -1,7 +1,7 @@
-version: '3.8'
 services:
   app:
-    image: lllcode
+    image: rainsho/lllcode
+    restart: unless-stopped
     build:
       context: .
     ports:
@@ -11,4 +11,3 @@ services:
       - ADMIN_TOKEN=${ADMIN_TOKEN}
     volumes:
       - ./db.json:/app/db.json
-    restart: unless-stopped

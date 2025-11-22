@@ -5,7 +5,6 @@ COPY package.json yarn.lock ./
 RUN corepack enable && yarn set version classic && yarn install --frozen-lockfile --ignore-scripts
 COPY . .
 RUN yarn build
-RUN node dist/utils/db.js
 
 FROM node:18-alpine AS runner
 WORKDIR /app
@@ -14,5 +13,6 @@ COPY package.json yarn.lock ./
 RUN corepack enable && yarn set version classic && yarn install --frozen-lockfile --production --ignore-scripts
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/client ./client
+RUN node dist/utils/db.js
 EXPOSE 3333
 CMD ["node", "--require", "dotenv/config", "dist/index.js"]
